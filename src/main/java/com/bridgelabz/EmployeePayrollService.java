@@ -49,12 +49,9 @@ public class EmployeePayrollService {
         if (printTo.equals(IOService.FILE_IO))
             new EmployeePayrollFileIOService().printData();
     }
-
     public long countEntries() {
         return new EmployeePayrollFileIOService().countEntries();
     }
-
-
     public static boolean deleteFiles(File contentsToDelete) {
         File[] allContents = contentsToDelete.listFiles();
         if (allContents != null) {

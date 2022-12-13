@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +12,6 @@ public class EmployeePayrollService {
     public EmployeePayrollService() {
         employeePayrollList = new ArrayList<EmployeePayrollData>();
     }
-
     public static void main(String[] args) {
         System.out.println("Welcome to Empolyee Payroll Services Program");
         ArrayList<EmployeePayrollData> employeePayrollList = new ArrayList<>();
@@ -20,7 +20,6 @@ public class EmployeePayrollService {
         employeePayrollService.readEmployeePayrollData(consoleInputReader);
         employeePayrollService.writeEmployeePayrollData();
     }
-
     private void readEmployeePayrollData(Scanner consoleInputReader) {
         System.out.println("Enter Employee ID: ");
         int id = consoleInputReader.nextInt();
@@ -30,8 +29,16 @@ public class EmployeePayrollService {
         double salary = consoleInputReader.nextDouble();
         employeePayrollList.add(new EmployeePayrollData(id, name, salary));
     }
-
     private void writeEmployeePayrollData() {
         System.out.println("\nWriting Employee Payroll Data to Console\n" + employeePayrollList);
+    }
+    public static boolean deleteFiles(File contentsToDelete) {
+        File[] allContents = contentsToDelete.listFiles();
+        if (allContents != null) {
+            for (File file : allContents) {
+                deleteFiles(file);
+            }
+        }
+        return contentsToDelete.delete();
     }
 }
